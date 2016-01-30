@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -cp target/classes:target/dependency/* estatico
+web: java $JAVA_OPTS -cp target/classes:target/dependency/* sporeon-estatico
