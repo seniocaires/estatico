@@ -55,6 +55,75 @@
         </execution>
       </executions>
       </plugin>
+
+<!-- <plugin>
+  <groupId>nl.geodienstencentrum.maven</groupId>
+  <artifactId>sass-maven-plugin</artifactId>
+  <version>2.15</version>
+  <executions>
+    <execution>
+      <id>generate-css</id>
+      <phase>deploy</phase>
+      <goals>
+        <goal>update-stylesheets</goal>
+      </goals>
+      <configuration>
+        <sassSourceDirectory>${basedir}/src/main/scss</sassSourceDirectory>
+        <destination>${project.build.directory}/css</destination>
+      </configuration>
+    </execution>
+  </executions>
+</plugin> -->
+<!--     <plugin>  
+        <groupId>org.eclipse.m2e</groupId>  
+        <artifactId>lifecycle-mapping</artifactId>  
+        <version>1.0.0</version>  
+        <configuration>  
+            <lifecycleMappingMetadata>  
+                <pluginExecutions>  
+                    <pluginExecution>  
+                        <pluginExecutionFilter>  
+                            <groupId>ro.isdc.wro4j</groupId>  
+                            <artifactId>wro4j-maven-plugin</artifactId>  
+                            <versionRange>[1.0,)</versionRange>  
+                            <goals>  
+                                <goal>run</goal>  
+                            </goals>  
+                        </pluginExecutionFilter>  
+                        <action>  
+                            <execute/>  
+                        </action>  
+                    </pluginExecution>  
+                </pluginExecutions>  
+            </lifecycleMappingMetadata>  
+        </configuration>  
+    </plugin> -->
+<!-- 
+https://github.com/wro4j/wro4j
+http://wro4j.readthedocs.org/en/stable/ConfigurableWroManagerFactory/?highlight=phase
+https://developer.jboss.org/en/tools/blog/2012/01/17/css-and-js-minification-using-eclipse-maven-and-wro4j?_sscc=t 
+-->
+<plugin>
+        <groupId>ro.isdc.wro4j</groupId>
+        <artifactId>wro4j-maven-plugin</artifactId>
+        <version>1.7.6</version>
+        <executions>
+            <execution>
+               <phase>compile</phase>
+               <goals>
+                   <goal>run</goal>
+               </goals>
+            </execution>
+        </executions>
+          <configuration>
+            <minimize>true</minimize>
+            <contextFolder>${basedir}/src/main/webapp/</contextFolder>
+            <jsDestinationFolder>${project.build.directory}/${project.build.finalName}/resources/js</jsDestinationFolder>
+            <!-- <cssDestinationFolder>${project.build.directory}/${project.build.finalName}/resources/styles</cssDestinationFolder> -->
+            <cssDestinationFolder>${project.build.directory}/${project.build.finalName}/css</cssDestinationFolder>
+          </configuration>
+        </plugin>
+
     </plugins>
   </build>
 </project>
